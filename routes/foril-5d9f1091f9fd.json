@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "foril-zim",
+  "private_key_id": "5d9f1091f9fdae849bc90ef9538688c3832dfc09",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCxeCjO/nnpWJIh\no39hvAkSgidhLE2ef+8O3CICLX/G1dhw3G3JJ8F0jnhPXshg8gnkv6vUVZ5wBpQr\nsI+din4Snz576WYZX5se3/uGSoaUgPox4Uw75hHJhbZ1FBR0S2Mg8rFkIJgdtYAU\nVNgkLkUc/xW1TbCNqIpoWPLt+bjeetC2ZhQmg18L4OP2cGsNIK3oHJHfZCr/3ajH\nMYmCNLNBb+oN+W9sFNFhIklf9CWI4oQ30tB5No8vN6ajiakbwj/w0ORkTQjrsbJl\n81zXEKq1my4y+qEr6nvsJOuiwc5leRrFpQCN7+rRfDUy5Bkwl2v0XKNnMSdczDxL\nl5LhdOY5AgMBAAECggEAGgqNwmypAEqqNsbCXFm2jcFiJz9/AZu4PS/5dY8Dnu5Q\n3PlwyqxLa4pfBmvcGg2qJ1ImKU7e+YVIR25DGf+b0akNsX+60aJWesised+EW/+J\nDGSzm7PTjFn96gl7mY0DthlRWmXwrFCubff9N2HqwP8qn6NkyC9LuqrCtZTdQcKj\n63vAAt2qfaw/O/0YsOf7oOCq6+MTU1GjOuQPLXmjnyVzDujXNzoPYwkF6qFolGvG\nT4mNNhwRm/BRSa4DrfQnxzd3E8BVO8f1KY9unBdbyZJcrofz0L4OwoQ37IuviFsR\npfANByTaz8ibh5ZphWELe5kNVtZ+pFmytBdMjjyE2QKBgQDWfHCX5xjs8lIAvFw9\nSYUKC9O1YYJat8n2L1iXUMXP/rcFRCf9EIrlplLFHJwvKRhXlonV+Me3j7JBwQYp\n0sSIye8SSJ5T/tir3b5cXP6AbKRYINONnNcpUeb6sFk6jgMzMvSg2Kf1WIVOSxaa\nMtJEFfY7jCkGE0kSSU6gqjLJ6wKBgQDT0ZR+bpP9oFgvX3H0EZH4tB2HTywR89wU\n7sp/itagA6OFWnVoWLNlmr+pOLIVs72/7i+0ZHcVmGgPqfj/yrC37oUn74IZot1L\nkBavfgwQPkJBCylEjrlSw8L18u79rva2Q0wK0/yJEyXX3lzlxQASCmX0bqfLq8k4\nBFNmT6ZDawKBgB+p8UlLkY9xWo/HPurBTsWj51Ywlfjkhwk0BiUYhItnNAev/yNJ\n7OdoPXHh/mCr9W8Ax0pyVrGPoiY447sK5X64KPYPCGioB76flrm19NBquXxVJEYU\nsGLmN24s2I9fZbOKQzj3oxwCPHPJfAW5mPb6Mwapc2j1MeVkMxpe5e6PAoGAJWXk\ndOorIOWVjE+qu+/6ONH8QK6e1lCa8+sxP5GQ0VGzJlFRV2oJyo+m9Ua4UpKYlvGD\n5LK0P9DX1qQo/WiZCPCI/AMSklop/jRjfPqhQKDta7R/xcX5PH6pxmjs/0dL8eQx\n4duJw93omZN+DWdZ2tWRKLX81D3xWf2RiAfaEB8CgYAHqj74K8qMeBqCY/BuIOZz\nWeZ5RhmxT+JkahKvbrn640U849LmFie5MNuR17lz+NTo9+0y9hANE9smAg5+zS5X\nU5KvHinpsC4+1tpe9Fi8U6NxTPHU5BArxjVyqpoH9vNNgojQdlVaD8a++yAKjEFv\nHHyteQacWTe68ogWlgdHVg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "foril-55@foril-zim.iam.gserviceaccount.com",
+  "client_id": "108587684586057057709",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/foril-55%40foril-zim.iam.gserviceaccount.com"
+}
