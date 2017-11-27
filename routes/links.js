@@ -1,33 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var Site = require('./site');
+var Sites = require('./sites');
 var Link = require('./link');
 var db = require('./db');
 
 
-router.get('/new/:domain', function(req,res,next){
-	domain = req.params.domain;
-	console.log('Contents of domain:'+domain);
-	newSite = new Site(domain,0,0);
-	 saveSite(newSite,res);
-});
+router.get('/:link*', function(req,res,next){
+	console.log('request recieved by Link router GET')
 
-router.get('/:domain*', function(req,res,next){
-	console.log('request recieved by Domain router GET')
-
-	domain = req.params.domain;
+	link = req.params.link;
 
 	//implement domain check here, might not be necessary since crawler will return 404?
 
-	//if domain exists pull it up
+	//if link exists pull it up
 
     db.con.connect(function(err) {
             console.log("Connected!");
 
-            if (domain != '') {
+            if (link != '') {
+            	var sql = "Select * FROM links WHERE url = '" + link + "'";
 
-            	var sql = "Select * FROM domains WHERE dName = '" + domain + "'";
-            	console.log(sql);
 				db.con.query(sql, function(err, result) {
 				    if (err) {
 				        console.log('An error occured while executing query');
@@ -36,13 +29,13 @@ router.get('/:domain*', function(req,res,next){
 				    } else {
 				        console.log("Returning result: "+ result);
 				        if (result == '') {
-				        	console.log(domain + ' not found, creating new entry.');
-				        	newSite = createDomain(domain);
-				        	saveSite(newSite,this.res);
-				        	updateDomain(domainExtracter(newSite.domain));
+				        	console.log(link + ' not found, creating new entry.');
+				        	newLink = createLink(link);
+				        	saveLink(newLink,this.res);
+				        	updateDomain(domainExtracter(newLink.url));
 				        	res.type('json');
 
-				        	res.json(newSite);
+				        	res.json(newLink);
 				        }else{
 				        	console.log('result is: ' + result);
 				        	res.type('json');
@@ -53,7 +46,7 @@ router.get('/:domain*', function(req,res,next){
 				    }
 			    });
             }else{
-            	var sql = "Select * FROM domains";
+            	var sql = "Select * FROM links";
 
 				db.con.query(sql, function(err, result) {
 				    if (err) {
@@ -63,6 +56,7 @@ router.get('/:domain*', function(req,res,next){
 				    } else {
 				        console.log("Returning result");
 				        res.json(result);
+				        updateDomain(result);
 				    }
 			    });
             }
@@ -72,15 +66,17 @@ router.get('/:domain*', function(req,res,next){
 
 });
 
+function updateDomain(domain){
+//update domain code comes here
+}
+
 
 //FUNCTIONS
-function  saveSite(domain,res){
+function  saveLink(link,res){
+	console.log('####################'+link);
 	    db.con.connect(function(err) {
-        if (err) {
-            console.log("an error has occured")
-        } else {
             console.log("Connected!");
-		    var sql = "INSERT INTO domains(dName,hits,rep) VALUES('"+domain.domain+"',"+domain.hits+','+domain.reputation+')';
+		    var sql = "INSERT INTO links(url,title,body,accuracy) VALUES('"+link.url+"','"+link.title+"','"+link.body+"',"+link.accuracy+")";
 		    //automatic escaping of Queries?
 		    db.con.query(sql, function(err, result) {
 		        if (err) {
@@ -89,12 +85,11 @@ function  saveSite(domain,res){
 		        } else {
 		            console.log("1 record Found");
 		            //revisit this section
-		            res.json(result);
+		            //this.res.json(result);
 		        }
 
 		    });
-        }
-    });
+    	});
 	    //close connection to database
 	    // db.con.destroy();
 }
@@ -102,40 +97,18 @@ function  saveSite(domain,res){
 //Should be seperate module?
 function authenticityChecker(link) {
 	
-	return Math.random(0,100);
+	link.accuracy = Math.random(0,100);
 };
 
-function updateDomain(domain){
-	domain.hits =+ 1;
-	db.con.connect(function(err) {
-        if (err) {
-            console.log("an error has occured")
-        } else {
-            console.log("Connected!");
-		    var sql = "UPDATE domains SET hits = "+domain.hits+1+" WHERE dName = '" + domain + "'";
-		    //automatic escaping of Queries?
-		    db.con.query(sql, function(err, result) {
-		        if (err) {
-		            console.log('An error occured while executing query');
-		            console.log(err); 
-		        } else {
-		            console.log(domain.domain+" Updated, new value for hits: "+domain.hits);
-		        }
 
-		    });
-        }
-    });
-	saveSite(domain);
-};
-
-//should there be need to pullUp a specific domain?
-function pullDomain(domain) {
+//should there be need to pullUp a specific link?
+function pullLink(link) {
     db.con.connect(function(err) {
         if (err) {
             console.log("an error has occured")
         } else {
             console.log("Connected!");
-		    var sql = "Select * FROM domains WHERE dName = " + domain + "";
+		    var sql = "Select * FROM links WHERE dName = " + link + "";
 		    //automatic escaping of Queries?
 		    db.con.query(sql, function(err, result) {
 		        if (err) {
@@ -172,9 +145,19 @@ function domainExtracter(url) {
     return result
 }
 
-function createDomain(site){
-	newSite = new Site(site,0,0);
-	return newSite;
+function createLink(link){
+	console.log('creating link from: '+link);
+	newLink = new Link(this.link,"","",0);
+	console.log(newLink);
+	authenticityChecker(newLink);
+	scrapper(newLink);
+
+	return newLink;
+}
+
+function scrapper(link) {
+	link.title = "Advanced Level ZIMSEC results now out, passrate lower than expected";
+	link.body = "Minister of Education Hon David Coltart has advised that Zimbabwe Schools Examinations Council (Zimsec) A level students will have a nervous weekend because their results come out Monday.";
 }
 
 module.exports = router;
